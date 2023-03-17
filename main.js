@@ -5,7 +5,7 @@ fetch("https://apis.scrimba.com/jsonplaceholder/posts")
         let html = ""
         for (let post of postsArr) {
             html += `
-                <h3>${post.title}</h3>
+                <h3 class="blah">${post.title}</h3>
                 <p>${post.body}</p>
                 <hr />
             `
@@ -32,5 +32,15 @@ document.getElementById("new-post").addEventListener("submit", function(e) {
     
     fetch("https://apis.scrimba.com/jsonplaceholder/posts", options)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(post => {
+            /**
+             * Challenge: Update the DOM with the new blog entry
+             */
+            document.getElementById("blog-list").innerHTML = `
+                <h3 class="blah">${post.title}</h3>
+                <p>${post.body}</p>
+                <hr />
+                ${document.getElementById("blog-list").innerHTML}
+            `
+        })
 })
